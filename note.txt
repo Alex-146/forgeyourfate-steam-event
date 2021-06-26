@@ -18,3 +18,20 @@
 /*
 option: 1 or 2
 */
+
+
+/*
+https://www.reddit.com/r/Steam/comments/o7dtgf/psa_trailblazing_explorer_gorilla_scientist_or/
+
+You can influence which badge and frame you get by choosing answer 1 or
+answer 2. You get 1 and 2 points respectively. The following list shows
+how many points you need for which badge:
+
+The Masked Avenger -> 14-16
+52:The Trailblazing Explorer -> 17-19
+The Gorilla Scientist -> 20-22
+54:The Paranormal Professor -> 23-25
+The Ghost Detective -> 26-28
+
+(number before name is "badge_granted" in response)
+*/

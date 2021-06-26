@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="shortcut icon" href="https://img.icons8.com/ios/50/000000/steam.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="/public/css/prism-gruvbox-dark.css"> -->
+  <link rel="stylesheet" href="/public/css/prism.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="/public/js/index.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <div class="text-center my-3">
+      <h1 class="display-4">Steam event</h1>
+      <a class="display-4 font-weight-bold text-decoration-none"
+        href="https://store.steampowered.com/forgeyourfate" target="_blank"
+      >Forge your fate</a>
+    </div>
+
+    <div class="card shadow">
+
+      <div class="p-3">
+        
+        <div class="text-center mb-3">
+          <span class="font-weight-bold">Last valid time:</span>
+          <span>
+            <% if (typeof validTime !== "undefined") { %> <%= validTime %> <% }
+            else { %> Sat, 26 Jun 2021 22:35:36 GMT <% } %>
+          </span>
+        </div>
+
+        <ul class="list-group" id="badge-container">
+          <% if (badges.length > 0) { %>
+            <% badges.forEach((b, i) => { %>
+              <li class="list-group-item d-flex justify-content-between align-items-center badge-element">
+                <div>
+                  <input type="radio"
+                    name="badge"
+                    value="<%= b.name %>"
+                    id="badge-<%= i %>"
+                    <%= i === 0 && "checked" %> 
+                  >
+                  
+                  <% if (b.status === "verified") { %>
+                    <span>✔️</span>
+                  <% } else if (b.status === "not sure") { %>
+                    <span>❔</span>
+                  <% } else { %>
+                    <span>❌</span>
+                  <% } %>
+                  
+                  <label for="badge-<%= i %>" class="mb-0">
+                    <%= b.name %> (<%= b.description %>)
+                  </label>
+                </div>
+
+                <img src="https://community.cloudflare.steamstatic.com/public/images/badges/51_summer2021/<%= 51+i %>.png" style="width: 50px; height: 50px;">
+              </li>
+            <% }) %>
+          <% } else { %>
+            <p>No badges available!</p>
+          <% } %>
+        </ul>
+
+        <div class="d-flex justify-content-center mt-3">
+          <button class="btn btn-primary btn-lg mx-1" onclick="sendBadgeRequest()">Get script</button>
+          <button class="btn btn-primary btn-lg mx-1" onclick="copy2clipboard()">Copy</button>
+        </div>
+
+        <pre class="language-javascript"><code class="language-javascript"></code></pre>
+      </div>
+    
+    </div>
+
+    <footer class="my-3">
+      <div class="text-center">
+        <a class="h6" href=<%= author.url %> target="_blank"><%= author.name %></a>
+        <p>&copy; 2021</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

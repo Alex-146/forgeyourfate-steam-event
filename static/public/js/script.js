@@ -2,7 +2,8 @@
  * Author: https://github.com/alex-146
  * I am not responsible for your actions, you do it on own risk
  * Created 26.06.2021
- * Execute in browser console at https://store.steampowered.com/
+ * Execute in browser console at: 
+ * https://store.steampowered.com/ or https://store.steampowered.com/forgeyourfate
  */
 
 (function() {
@@ -11,14 +12,14 @@
       if (typeof badge === "string") {
         try {
           badge = JSON.parse(badge.replace(/'/g, "\""));
+          this.badge = badge;
+          this.isValid = badge.status !== "unknown";
         }
         catch(e) {
+          this.isValid = false;
           alert(e.message);
         }
       }
-      this.badge = badge;
-
-      this.isValid = badge.verified;
     }
 
     makeRequest(genre, choice) {

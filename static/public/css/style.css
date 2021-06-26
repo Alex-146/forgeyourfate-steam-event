@@ -18,6 +18,6 @@ pre {
   justify-content: center;
 }
 
-.badge-element > label, input {
+.badge-element > div > label, input {
   cursor: pointer;
 }
