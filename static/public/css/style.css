@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  user-select: none;
+}
+
+pre {
+  height: 50vh;
+  user-select: text !important;
+}
+
+#badge-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.badge-element > label, input {
+  cursor: pointer;
+}

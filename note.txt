@@ -1,0 +1,20 @@
+/* genre
+1:summer2021_action
+2:summer2021_adventure_casual
+3:summer2021_rpg
+4:summer2021_strategy
+5:summer2021_simulation
+6:summer2021_sports_racing
+7:summer2021_horror
+8:summer2021_survival
+9:summer2021_open_world
+10:summer2021_scifi
+11:summer2021_mystery
+12:summer2021_space
+13:summer2021_roguelike
+14:summer2021_anime
+*/
+
+/*
+option: 1 or 2
+*/

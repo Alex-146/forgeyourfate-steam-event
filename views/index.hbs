@@ -1,0 +1,83 @@
+
+
+<script>
+  let plainCode = "";
+
+  function copy2clipboard() {
+    navigator.clipboard.writeText(plainCode)
+      .then(() => {
+        console.log("clipboard works");
+      })
+      .catch(error => {
+        alert("💩 Looks like your browser doesn't support this feature, try to copy by yourself");
+        console.log(error);
+      });
+  }
+
+  async function sendBadgeRequest() {
+    const checked = document.querySelector("input[name=badge]:checked");
+    if (!checked) alert("Select desired badge!");
+
+    const badgeName = checked.value;
+
+    const response = await fetch(`/${badgeName}`);
+    const value = await response.json();
+
+    if (value.success) {
+      const { html, code } = value;
+      plainCode = code;
+      document.querySelector("code").innerHTML = html;
+    }
+    else {
+      alert(value.message);
+    }
+  }
+</script>
+
+<div class="container">
+
+  <h1 class="display-4 text-center">Steam event</h1>
+  <h1 class="display-4 text-center font-weight-bold">Forge your fate</h1>
+
+  <div class="card shadow">
+
+    <div class="p-3">
+
+      <ul class="list-group" id="badge-container">
+        {{#if badges}}
+          {{#each badges}}
+            <li class="list-group-item badge-element">
+              <input type="radio" name="badge" value="{{name}}" id="badge-{{@index}}">
+              {{#if verified}}
+                <span>✅</span>
+              {{else}}
+                <span>❌</span>
+              {{/if}}
+              <label for="badge-{{@index}}">{{name}} ({{description}})</label>
+            </li>
+          {{/each}}
+        {{else}}
+          <p>No badges available!</p>
+        {{/if}}
+      </ul>
+
+      <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary btn-lg mx-1" onclick="sendBadgeRequest()">Get script</button>
+        <button class="btn btn-primary btn-lg mx-1" onclick="copy2clipboard()">Copy</button>
+      </div>
+
+      <pre class="language-js">
+        <code class="language-js"></code>
+      </pre>
+    </div>
+
+  </div>
+
+  <footer class="my-3">
+    <div class="text-center">
+      <a class="h6" href={{ author.url }} target="_blank">{{ author.name }}</a>
+      <p>&copy; 2021</p>
+    </div>
+  </footer>
+
+</div>
